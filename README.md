@@ -30,9 +30,14 @@ To ensure compatibility with different Angular versions, install the correct pac
 
 | Angular Version          | Plugin Version | Supports Standalone Components | Installation Command                  |
 |--------------------------|----------------|--------------------------------|---------------------------------------|
+| `>=14.0.0` and `<16.0.0` | `v2.0.0`       | Yes                            | `npm install ngx-responsive-if@2.0.0` |
 | `>=8.0.0` and `<14.0.0`  | `v1.0.0`       | No                             | `npm install ngx-responsive-if@1.0.0` |
 
 ## 🛠️ Usage
+
+You can use the directive in two ways: **Module-based** or **Standalone**.
+
+### 1️⃣ Module-Based Approach
 
 Import and declare the `NgxResponsiveIfModule` inside an Angular module:
 
@@ -60,6 +65,31 @@ Then use it in your template:
   <p>Visible only on smaller screens.</p>
 </ng-template>
 ```
+
+### 2️⃣ Standalone Approach
+
+You can use `NgxResponsiveIfDirective` without a module by importing it directly in a component:
+
+```ts
+import { Component } from '@angular/core';
+import { NgxResponsiveIfDirective } from 'ngx-responsive-if';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [NgxResponsiveIfDirective],
+  template: `
+    <div *ngxResponsiveIf="'min-width: 600px'">
+      This content is visible on screens wider than 600px.
+    </div>
+  `,
+})
+export class ExampleComponent {}
+```
+
+This approach is useful when working with standalone components in Angular 14+.
+
+Choose the method that best fits your project structure! 🚀
 
 ## 🔧 strictMode
 

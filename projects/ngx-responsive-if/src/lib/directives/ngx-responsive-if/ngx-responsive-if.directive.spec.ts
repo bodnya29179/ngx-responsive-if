@@ -26,6 +26,8 @@ class MatchMedia {
       <p>Visible on small screens</p>
     </ng-template>
   `,
+  imports: [NgxResponsiveIfDirective],
+  standalone: true,
 })
 class HostComponent {
   mediaQuery!: string;
@@ -44,18 +46,14 @@ describe(NgxResponsiveIfDirective.name, () => {
   }
 
   function getDirectiveInstance(): NgxResponsiveIfDirective | undefined {
-    for (const node of fixture.debugElement.childNodes) {
-      const directive = (node as DebugNode).injector.get(NgxResponsiveIfDirective, null);
-
-      if (directive) {
-        return directive;
-      }
-    }
+    return fixture.debugElement.childNodes
+      .find((node: DebugNode) => node.injector.get(NgxResponsiveIfDirective))
+      ?.injector.get(NgxResponsiveIfDirective);
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NgxResponsiveIfDirective, HostComponent],
+      imports: [HostComponent],
     });
   });
 
@@ -91,7 +89,7 @@ describe(NgxResponsiveIfDirective.name, () => {
 
         // Act
         // Assert
-        expect(getDirectiveInstance() instanceof NgxResponsiveIfDirective).toBe(true);
+        expect(getDirectiveInstance()).toBeInstanceOf(NgxResponsiveIfDirective);
       }));
 
       describe('inputs validation', () => {
@@ -161,7 +159,7 @@ describe(NgxResponsiveIfDirective.name, () => {
           // Arrange
           const mediaQuery = 'invalid-query';
           const directive = getDirectiveInstance();
-          directive.strictMode = true;
+          directive!.strictMode = true;
           fixture.componentInstance.mediaQuery = mediaQuery;
 
           // Act
@@ -172,7 +170,7 @@ describe(NgxResponsiveIfDirective.name, () => {
         it('should not throw an error when strict mode is enabled and media query is valid', () => {
           // Arrange
           const directive = getDirectiveInstance();
-          directive.strictMode = true;
+          directive!.strictMode = true;
           fixture.componentInstance.mediaQuery = 'min-width: 768px';
 
           // Act
@@ -183,7 +181,7 @@ describe(NgxResponsiveIfDirective.name, () => {
         it('should not throw an error when strict mode is disabled, even for invalid media queries', () => {
           // Arrange
           const directive = getDirectiveInstance();
-          directive.strictMode = false;
+          directive!.strictMode = false;
           fixture.componentInstance.mediaQuery = 'invalid-query';
 
           // Act

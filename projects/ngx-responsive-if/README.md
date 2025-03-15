@@ -30,9 +30,14 @@ To ensure compatibility with different Angular versions, install the correct pac
 
 | Angular Version          | Plugin Version | Supports Standalone Components | Installation Command                  |
 |--------------------------|----------------|--------------------------------|---------------------------------------|
+| `>=14.0.0` and `<16.0.0` | `v2.0.0`       | Yes                            | `npm install ngx-responsive-if@2.0.0` |
 | `>=8.0.0` and `<14.0.0`  | `v1.0.0`       | No                             | `npm install ngx-responsive-if@1.0.0` |
 
 ## 🛠️ Usage
+
+You can use the directive in two ways: **Module-based** or **Standalone**.
+
+### 1️⃣ Module-Based Approach
 
 Import and declare the `NgxResponsiveIfModule` inside an Angular module:
 
@@ -61,6 +66,31 @@ Then use it in your template:
 </ng-template>
 ```
 
+### 2️⃣ Standalone Approach
+
+You can use `NgxResponsiveIfDirective` without a module by importing it directly in a component:
+
+```ts
+import { Component } from '@angular/core';
+import { NgxResponsiveIfDirective } from 'ngx-responsive-if';
+
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [NgxResponsiveIfDirective],
+  template: `
+    <div *ngxResponsiveIf="'min-width: 600px'">
+      This content is visible on screens wider than 600px.
+    </div>
+  `,
+})
+export class ExampleComponent {}
+```
+
+This approach is useful when working with standalone components in Angular 14+.
+
+Choose the method that best fits your project structure! 🚀
+
 ## 🔧 strictMode
 
 The `strictMode` property defines how media queries are validated.
@@ -68,22 +98,22 @@ The `strictMode` property defines how media queries are validated.
 - **`true` (default)**: Allows only predefined media query formats.
 
   **Supported queries in strict mode**:
-    - `min-width: Xpx`
-    - `max-width: Xpx`
-    - `min-height: Xpx`
-    - `max-height: Xpx`
-    - `aspect-ratio: X/Y`
-    - `orientation: portrait`
-    - `orientation: landscape`
+  - `min-width: Xpx`
+  - `max-width: Xpx`
+  - `min-height: Xpx`
+  - `max-height: Xpx`
+  - `aspect-ratio: X/Y`
+  - `orientation: portrait`
+  - `orientation: landscape`
 
   **Allowed CSS units**:
-    - `px`
-    - `rem`
-    - `em`
-    - `vw`
-    - `dvw`
-    - `vh`
-    - `dvh`
+  - `px`
+  - `rem`
+  - `em`
+  - `vw`
+  - `dvw`
+  - `vh`
+  - `dvh`
 
 - **`false`**: Accepts any valid media query string without validation.
 
@@ -95,29 +125,29 @@ The `strictMode` property defines how media queries are validated.
 
   **Examples**:
 
-    1. Convert:
-       ```css
-       @media screen and (min-width: 40rem) {
-         /* Some styles here */
-       }
-       ```
-       to:
-       ```html
-       <some-html-element *ngxResponsiveIf="'screen and (min-width: 40rem)'"></some-html-element>
-       ```
+  1. Convert:
+     ```css
+     @media screen and (min-width: 40rem) {
+       /* Some styles here */
+     }
+     ```
+     to:
+     ```html
+     <some-html-element *ngxResponsiveIf="'screen and (min-width: 40rem)'"></some-html-element>
+     ```
 
-    2. Convert:
-       ```css
-       @media (max-width: 50rem) {
-         /* Some styles here */
-       }
-       ```
-       to:
-       ```html
-       <!-- IMPORTANT: Ensure the condition includes parentheses if required -->
-       <!-- In enabled strict mode, we do not need parentheses -->
-       <some-html-element *ngxResponsiveIf="'(max-width: 50rem)'"></some-html-element>
-       ```
+  2. Convert:
+     ```css
+     @media (max-width: 50rem) {
+       /* Some styles here */
+     }
+     ```
+     to:
+     ```html
+     <!-- IMPORTANT: Ensure the condition includes parentheses if required -->
+     <!-- In enabled strict mode, we do not need parentheses -->
+     <some-html-element *ngxResponsiveIf="'(max-width: 50rem)'"></some-html-element>
+     ```
 
 ### Examples:
 

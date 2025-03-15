@@ -1,10 +1,11 @@
 import { Directive, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { MEDIA_QUERY_REGEX, WINDOW_RESIZE$ } from '../../constants';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { MEDIA_QUERY_REGEX, WINDOW_RESIZE$ } from '../../constants';
 
 @Directive({
   selector: '[ngxResponsiveIf]',
+  standalone: true,
 })
 export class NgxResponsiveIfDirective implements OnChanges, OnInit, OnDestroy {
   @Input('ngxResponsiveIf')
@@ -75,6 +76,6 @@ export class NgxResponsiveIfDirective implements OnChanges, OnInit, OnDestroy {
 
   private renderElseView(): void {
     this.viewContainer.clear();
-    this.viewContainer.createEmbeddedView(this.elseTemplate);
+    this.viewContainer.createEmbeddedView(this.elseTemplate!);
   }
 }

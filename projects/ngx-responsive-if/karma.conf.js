@@ -1,4 +1,4 @@
-module.exports = function (config) {
+module.exports = (config) => {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -6,16 +6,22 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
     ],
     client: {
       clearContext: false,
     },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/ngx-responsive-if'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true,
+    jasmineHtmlReporter: {
+      suppressAll: true,
+    },
+    coverageReporter: {
+      dir: require('path').join(__dirname, './coverage/angular-unit-testing-basics'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' },
+      ],
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
