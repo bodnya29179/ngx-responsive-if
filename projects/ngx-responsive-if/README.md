@@ -28,10 +28,10 @@ npm install ngx-responsive-if
 
 To ensure compatibility with different Angular versions, install the correct package version:
 
-| Angular Version          | Plugin Version | Supports Standalone Components | Installation Command                  |
-|--------------------------|----------------|--------------------------------|---------------------------------------|
-| `>=14.0.0` and `<16.0.0` | `v2.0.0`       | Yes                            | `npm install ngx-responsive-if@2.0.0` |
-| `>=8.0.0` and `<14.0.0`  | `v1.0.0`       | No                             | `npm install ngx-responsive-if@1.0.0` |
+| Angular Version          | Plugin Version | Supports Standalone Components | Installation Command              |
+|--------------------------|----------------|--------------------------------|-----------------------------------|
+| `>=14.0.0` and `<16.0.0` | `v2`           | Yes                            | `npm install ngx-responsive-if@2` |
+| `>=8.0.0` and `<14.0.0`  | `v1`           | No                             | `npm install ngx-responsive-if@1` |
 
 ## 🛠️ Usage
 
