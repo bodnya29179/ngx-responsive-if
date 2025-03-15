@@ -1,5 +1,5 @@
-import { asyncScheduler, fromEvent } from 'rxjs';
-import { shareReplay, startWith, throttleTime } from 'rxjs/operators';
+import { asyncScheduler, fromEvent, throttleTime } from 'rxjs';
+import { shareReplay, startWith } from 'rxjs/operators';
 
 export const WINDOW_RESIZE$ = fromEvent(window, 'resize')
   .pipe(

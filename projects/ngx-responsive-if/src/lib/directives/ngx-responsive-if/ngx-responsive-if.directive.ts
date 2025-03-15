@@ -1,13 +1,12 @@
-import { Directive, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { DestroyRef, Directive, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MEDIA_QUERY_REGEX, WINDOW_RESIZE$ } from '../../constants';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[ngxResponsiveIf]',
   standalone: true,
 })
-export class NgxResponsiveIfDirective implements OnChanges, OnInit, OnDestroy {
+export class NgxResponsiveIfDirective implements OnChanges, OnInit {
   @Input('ngxResponsiveIf')
   mediaQuery!: string;
 
@@ -19,11 +18,10 @@ export class NgxResponsiveIfDirective implements OnChanges, OnInit, OnDestroy {
 
   private hasView = false;
 
-  private readonly unsubscribe$ = new Subject<void>();
-
   constructor(
     private readonly templateRef: TemplateRef<any>,
     private readonly viewContainer: ViewContainerRef,
+    private readonly destroyRef: DestroyRef,
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,12 +35,7 @@ export class NgxResponsiveIfDirective implements OnChanges, OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    WINDOW_RESIZE$.pipe(takeUntil(this.unsubscribe$)).subscribe(this.updateView.bind(this));
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    WINDOW_RESIZE$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(this.updateView.bind(this));
   }
 
   private updateView(): void {

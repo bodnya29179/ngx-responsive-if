@@ -27,9 +27,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-responsive-if/src/test.ts",
             "tsConfig": "projects/ngx-responsive-if/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-responsive-if/karma.conf.js"
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2025-03-15
+### 🛠 Changed
+- Updated to support Angular v16.0.0+.
+
+---
+
 ## [2.0.0] - 2025-03-15
 ### 🛠 Changed
 - Updated to support Angular versions [v14.0.0; 16.0.0).

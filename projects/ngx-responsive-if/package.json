@@ -1,6 +1,6 @@
 {
   "name": "ngx-responsive-if",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "Yevhen Bodnia",
   "description": "An Angular structural directive for conditional rendering based on media queries.",
   "keywords": ["angular", "directive", "responsive", "media-query", "ngx-responsive-if"],
@@ -15,8 +15,8 @@
   "license": "MIT",
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0",
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0",
     "rxjs": "^7.4.0"
   },
   "dependencies": {
