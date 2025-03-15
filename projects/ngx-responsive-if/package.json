@@ -1,0 +1,21 @@
+{
+  "name": "ngx-responsive-if",
+  "version": "1.0.0",
+  "author": "Yevhen Bodnia",
+  "description": "An Angular structural directive for conditional rendering based on media queries.",
+  "keywords": ["angular", "directive", "responsive", "media-query", "ngx-responsive-if"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bodnya29179/ngx-responsive-if"
+  },
+  "bugs": {
+    "url": "https://github.com/bodnya29179/ngx-responsive-if/issues"
+  },
+  "homepage": "https://github.com/bodnya29179/ngx-responsive-if#readme",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=8.0.0 <14.0.0",
+    "@angular/core": ">=8.0.0 <14.0.0",
+    "rxjs": "^6.4.0"
+  }
+}
